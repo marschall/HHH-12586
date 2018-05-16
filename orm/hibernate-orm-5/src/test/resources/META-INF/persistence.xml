@@ -9,21 +9,28 @@
         <description>Hibernate test case template Persistence Unit</description>
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
-        <exclude-unlisted-classes>false</exclude-unlisted-classes>
+        <class>org.hibernate.bugs.hhh12586.JavaTime</class>
+        <class>org.hibernate.bugs.hhh12586.LocalDateConverter</class>
+        <class>org.hibernate.bugs.hhh12586.LocalDateTimeConverter</class>
+        <class>org.hibernate.bugs.hhh12586.LocalTimeConverter</class>
+
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
 
         <properties>
             <property name="hibernate.archive.autodetection" value="class, hbm"/>
 
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.connection.driver_class" value="org.h2.Driver"/>
-            <property name="hibernate.connection.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1"/>
+            <property name="hibernate.connection.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'src/test/resources/h2-schema.sql'\;RUNSCRIPT FROM 'src/test/resources/h2-data.sql'"/>
             <property name="hibernate.connection.username" value="sa"/>
 
             <property name="hibernate.connection.pool_size" value="5"/>
 
             <property name="hibernate.show_sql" value="true"/>
             <property name="hibernate.format_sql" value="true"/>
+            <!-- 
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+             -->
 
             <property name="hibernate.max_fetch_depth" value="5"/>
 
