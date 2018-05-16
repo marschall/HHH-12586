@@ -42,6 +42,8 @@ public class JPAUnitTestCase {
 		entityManager.getTransaction().begin();
 
 
+		// Do stuff...
+		// read the entity inserted by SQL
 		TypedQuery<JavaTime> query = entityManager.createQuery("SELECT t FROM JavaTime t ORDER BY t.id ASC", JavaTime.class);
 		List<JavaTime> resultList = query.getResultList();
 		assertEquals(2, resultList.size());
@@ -53,7 +55,6 @@ public class JPAUnitTestCase {
 		assertEquals(LocalDateTime.parse("1980-01-01T23:03:20.123456789"), javaTime.getLocalDateTime());
 
 
-		// Do stuff...
 		entityManager.getTransaction().commit();
 		entityManager.close();
 	}
